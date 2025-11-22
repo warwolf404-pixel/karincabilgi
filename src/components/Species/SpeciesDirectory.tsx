@@ -28,22 +28,24 @@ export function SpeciesDirectory() {
   }, [search, species]);
 
   const loadSpecies = async () => {
-  console.log('🔄 VERILER YENIDEN YUKLENIYOR...');
+  console.log('🆕 YENİ VERİLER ÇEKİLİYOR...');
   setLoading(true);
   
-  // Cache'i bypass etmek için force reload
+  // Cache'i bypass et
   const { data, error } = await supabase
     .from('ant_species')
     .select('*')
     .order('genus', { ascending: true })
     .order('species_name', { ascending: true });
 
-  console.log('📊 YENI VERILER:', data);
-  console.log('🔎 ILK KAYIT:', data?.[0]);
+  console.log('🔥 GERÇEK VERİLER:', data);
   
-  if (data) {
+  if (data && data.length > 0) {
+    console.log('✅ İLK KAYIT:', data[0].description);
     setSpecies(data);
     setFilteredSpecies(data);
+  } else {
+    console.log('❌ HİÇ VERİ YOK!');
   }
   setLoading(false);
 };
