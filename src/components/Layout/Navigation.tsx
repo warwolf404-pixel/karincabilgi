@@ -9,7 +9,7 @@ export function Navigation({ activeTab, onTabChange }: NavigationProps) {
   const tabs = [
     { id: 'colonies', label: 'Kolonilerim', icon: Home },
     { id: 'public', label: 'Herkese Açık Koloniler', icon: Users },
-    { id: 'species', label: 'Türkiye''deki Türler', icon: BookOpen },
+    { id: 'species', label: 'Türkiye\'deki Türler', icon: BookOpen },
   ];
 
   return (
