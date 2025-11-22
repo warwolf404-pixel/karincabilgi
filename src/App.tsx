@@ -1,3 +1,4 @@
+import { antSpecies } from './data/ants.js';
 import { useState } from 'react';
 import { useAuth } from './contexts/AuthContext';
 import { AuthPage } from './components/Auth/AuthPage';
