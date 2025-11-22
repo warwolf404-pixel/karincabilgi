@@ -28,19 +28,25 @@ export function SpeciesDirectory() {
   }, [search, species]);
 
   const loadSpecies = async () => {
-    setLoading(true);
-    const { data } = await supabase
-      .from('ant_species')
-      .select('*')
-      .order('genus', { ascending: true })
-      .order('species_name', { ascending: true });
+  console.log('🔄 VERILER YENIDEN YUKLENIYOR...');
+  setLoading(true);
+  
+  // Cache'i bypass etmek için force reload
+  const { data, error } = await supabase
+    .from('ant_species')
+    .select('*')
+    .order('genus', { ascending: true })
+    .order('species_name', { ascending: true });
 
-    if (data) {
-      setSpecies(data);
-      setFilteredSpecies(data);
-    }
-    setLoading(false);
-  };
+  console.log('📊 YENI VERILER:', data);
+  console.log('🔎 ILK KAYIT:', data?.[0]);
+  
+  if (data) {
+    setSpecies(data);
+    setFilteredSpecies(data);
+  }
+  setLoading(false);
+};
 
   const genusList = Array.from(new Set(filteredSpecies.map((s) => s.genus))).sort();
 
