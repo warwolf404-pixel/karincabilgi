@@ -12,14 +12,18 @@ function App() {
   const { user, loading } = useAuth();
   const [activeTab, setActiveTab] = useState('colonies');
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
-    );
-  }
-
+  // GEÇİCİ: Her zaman species göstersin
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      {/* <Navigation activeTab={activeTab} onTabChange={setActiveTab} /> */}
+      
+      <main>
+        <SpeciesDirectory />
+      </main>
+    </div>
+  );
+}
   if (!user) {
     return <AuthPage />;
   }
